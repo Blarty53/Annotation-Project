@@ -33,8 +33,10 @@ async function loadAnnotations() {
             <h3>${item.claim}</h3>
             <p><strong>Verdict:</strong> ${item.verdict}</p>
             <p><strong>Why:</strong> ${item.why}</p>
-            <p><strong>Evidence:</strong> <a href="${item.evidence}" target="_blank">Archived Source</a></p>
-            <p><strong>Hypothesis Link:</strong> <a href="${item.hypothesis}" target="_blank">View Annotation</a></p>
+            <p><strong>Original Page:</strong> <a href="${item.original_link}" target="_blank">View Original</a></p>
+            <p><strong>Archived Link:</strong> <a href="${item.archived_link}" target="_blank">View Archive</a></p>
+            <p><strong>Hypothesis Annotation:</strong> <a href="${item.hypothesis_link}" target="_blank">View on Hypothes.is</a></p>
+
             <p><strong>Timestamp:</strong> ${item.timestamp}</p>
             <hr>
         `;
