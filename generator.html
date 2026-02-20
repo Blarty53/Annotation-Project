@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Annotation Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Annotation Generator</h1>
+    <p>Create JSON entries quickly and consistently.</p>
+</header>
+
+<h2>Input</h2>
+
+<p><strong>Original URL:</strong></p>
+<input id="url" style="width:100%; padding:10px;">
+
+<p><strong>Archived URL:</strong></p>
+<input id="archived" style="width:100%; padding:10px;">
+
+<p><strong>Screenshot URL (optional):</strong></p>
+<input id="screenshot" style="width:100%; padding:10px;">
+
+<p><strong>Claim:</strong></p>
+<textarea id="claim" style="width:100%; height:80px; padding:10px;"></textarea>
+
+<p><strong>Verdict:</strong></p>
+<select id="verdict" style="padding:10px;">
+    <option>True</option>
+    <option>Misleading</option>
+    <option>Unsupported</option>
+    <option>Outdated</option>
+    <option>Unverifiable</option>
+</select>
+
+<p><strong>Why:</strong></p>
+<textarea id="why" style="width:100%; height:120px; padding:10px;"></textarea>
+
+<button onclick="generateJSON()" style="padding:10px 20px; margin-top:20px;">Generate JSON</button>
+
+<h2>Output</h2>
+<pre id="output" style="background:#f0f0f0; padding:20px; border-radius:6px;"></pre>
+
+<footer>
+    <p>© 2026 Annotation Project</p>
+</footer>
+
+<script>
+async function generateJSON() {
+    const res = await fetch('annotations.json');
+    const data = await res.json();
+
+    const nextId = data.length > 0 ? Math.max(...data.map(a => a.id)) + 1 : 1;
+
+    const entry = {
+        id: nextId,
+        claim: document.getElementById('claim').value,
+        verdict: document.getElementById('verdict').value,
+        why: document.getElementById('why').value,
+        archived_link: document.getElementById('archived').value,
+        original_link: document.getElementById('url').value,
+        hypothesis_link: "",
+        screenshot: document.getElementById('screenshot').value,
+        timestamp: new Date().toISOString().split('T')[0]
+    };
+
+    document.getElementById('output').textContent = JSON.stringify(entry, null, 4);
+}
+</script>
+
+</body>
+</html>
