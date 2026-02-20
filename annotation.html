@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Annotation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Annotation</h1>
+    <p>Permanent, evidence‑based context.</p>
+</header>
+
+<div id="annotation"></div>
+
+<footer>
+    <p>© 2026 Annotation Project</p>
+</footer>
+
+<script>
+let annotations = [];
+
+async function loadAnnotation() {
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
+
+    const res = await fetch('annotations.json');
+    annotations = await res.json();
+
+    const item = annotations.find(a => a.id === id);
+
+    const container = document.getElementById('annotation');
+
+    if (!item) {
+        container.innerHTML = '<div class="no-results">Annotation not found.</div>';
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="annotation">
+            <h2>${item.claim}</h2>
+            <p><strong>Verdict:</strong> ${item.verdict}</p>
+            <p><strong>Why:</strong> ${item.why}</p>
+            <p><strong>Original Page:</strong> <a href="${item.original_link}" target="_blank">View Original</a></p>
+            <p><strong>Archived Link:</strong> <a href="${item.archived_link}" target="_blank">View Archive</a></p>
+            <p><strong>Hypothesis Annotation:</strong> <a href="${item.hypothesis_link}" target="_blank">View on Hypothes.is</a></p>
+            <p><strong>Timestamp:</strong> ${item.timestamp}</p>
+            ${item.screenshot ? `<img src="${item.screenshot}" style="max-width:100%; margin-top:20px; border:1px solid #ccc; border-radius:6px;">` : ''}
+        </div>
+    `;
+}
+
+loadAnnotation();
+</script>
+
+</body>
+</html>
