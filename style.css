@@ -1,22 +1,74 @@
 body {
-    font-family: Arial, sans-serif;
-    max-width: 800px;
+    font-family: system-ui, Arial, sans-serif;
+    max-width: 900px;
     margin: auto;
     padding: 20px;
-    line-height: 1.6;
+    line-height: 1.7;
+    background: #fafafa;
+    color: #222;
 }
 
-h1, h2 {
-    color: #333;
+header {
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    color: #111;
+}
+
+header p {
+    margin-top: 8px;
+    color: #555;
 }
 
 .annotation {
-    background: #f7f7f7;
-    padding: 15px;
-    border-radius: 6px;
-    margin-bottom: 20px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.annotation h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.annotation p {
+    margin: 6px 0;
 }
 
 .annotation a {
-    color: #0066cc;
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.annotation a:hover {
+    text-decoration: underline;
+}
+
+#searchResults {
+    margin-top: 20px;
+}
+
+.no-results {
+    background: #fff3f3;
+    padding: 15px;
+    border: 1px solid #ffcccc;
+    border-radius: 6px;
+    color: #a33;
+}
+
+footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
 }
