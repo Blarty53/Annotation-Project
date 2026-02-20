@@ -25,6 +25,16 @@ accurately, and all evidence must be archived for permanence.</p>
 <div id="annotations"></div>
 
 <script>
+function checkURLParameter() {
+    const params = new URLSearchParams(window.location.search);
+    const url = params.get('search');
+
+    if (url) {
+        document.getElementById('searchInput').value = decodeURIComponent(url);
+        searchAnnotations();
+    }
+}
+    
 let annotations = [];
 
 async function loadAnnotations() {
