@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit a URL</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Submit a URL</h1>
+    <p>Help improve the archive by submitting pages that need context.</p>
+</header>
+
+<h2>Submit a Page</h2>
+
+<p><strong>URL:</strong></p>
+<input id="url" style="width:100%; padding:10px;">
+
+<p><strong>What is the claim?</strong> (optional)</p>
+<textarea id="claim" style="width:100%; height:80px; padding:10px;"></textarea>
+
+<p><strong>Additional notes:</strong> (optional)</p>
+<textarea id="notes" style="width:100%; height:120px; padding:10px;"></textarea>
+
+<button onclick="submitIssue()" style="padding:10px 20px; margin-top:20px;">Submit</button>
+
+<h2>Result</h2>
+<div id="result"></div>
+
+<footer>
+    <p>© 2026 Annotation Project</p>
+</footer>
+
+<script>
+function submitIssue() {
+    const url = document.getElementById('url').value.trim();
+    const claim = document.getElementById('claim').value.trim();
+    const notes = document.getElementById('notes').value.trim();
+
+    if (!url) {
+        document.getElementById('result').innerHTML = '<div class="no-results">Please enter a URL.</div>';
+        return;
+    }
+
+    const title = encodeURIComponent("Submission: " + url);
+    const body = encodeURIComponent(
+        "**URL:** " + url + "\n\n" +
+        "**Claim:** " + (claim || "Not provided") + "\n\n" +
+        "**Notes:** " + (notes || "None") + "\n\n" +
+        "_Submitted via the Annotation Project_"
+    );
+
+    const issueUrl = "https://github.com/Blarty53/Annotation-Project/issues/new?title=" + title + "&body=" + body;
+
+    document.getElementById('result').innerHTML = `
+        <p>Click below to submit:</p>
+        <p><a href="${issueUrl}" target="_blank">Open Submission</a></p>
+    `;
+}
+</script>
+
+</body>
+</html>
