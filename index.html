@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Annotation Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Annotation Project</h1>
+<p>A simple, transparent way to add evidence-based context to online claims.</p>
+
+<h2>Evidence Policy</h2>
+<p>Every annotation must include at least one archived primary source, a snapshot, 
+a clear verdict, and a confidence rating. Claims must be quoted or paraphrased 
+accurately, and all evidence must be archived for permanence.</p>
+
+<h2>Annotations</h2>
+<div id="annotations"></div>
+
+<script>
+async function loadAnnotations() {
+    const res = await fetch('annotations.json');
+    const data = await res.json();
+
+    const container = document.getElementById('annotations');
+
+    data.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'annotation';
+
+        div.innerHTML = `
+            <h3>${item.claim}</h3>
+            <p><strong>Verdict:</strong> ${item.verdict}</p>
+            <p><strong>Why:</strong> ${item.why}</p>
+            <p><strong>Evidence:</strong> <a href="${item.evidence}" target="_blank">Archived Source</a></p>
+            <p><strong>Hypothesis Link:</strong> <a href="${item.hypothesis}" target="_blank">View Annotation</a></p>
+            <p><strong>Timestamp:</strong> ${item.timestamp}</p>
+            <hr>
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+loadAnnotations();
+</script>
+
+</body>
+</html>
