@@ -1,11 +1,13 @@
 [
     {
+        "id": 1,
         "claim": "This school is leading the way in digital learning because it is an Apple Distinguished School.",
         "verdict": "Misleading",
         "why": "The Apple Distinguished School designation is a marketing recognition based on self-submitted materials and Apple product usage, not an independent evaluation of teaching quality or digital outcomes.",
         "archived_link": "ARCHIVED_LINK_HERE",
-        "original_link": "https://www.facebook.com/watch/?v=762276363466142",
+        "original_link": "ORIGINAL_PAGE_URL_HERE",
         "hypothesis_link": "YOUR_HYPOTHESIS_ANNOTATION_LINK_HERE",
+        "screenshot": "OPTIONAL_SCREENSHOT_URL_HERE",
         "timestamp": "2026-02-20"
     }
 ]
