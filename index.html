@@ -87,7 +87,7 @@ function searchAnnotations() {
     if (match) {
         resultsDiv.appendChild(createAnnotationCard(match));
     } else {
-        resultsDiv.innerHTML = '<p>No annotation found for this URL.</p>';
+        resultsDiv.innerHTML = '<div class="no-results">No annotation found for this URL.</div>';
     }
 }
 
@@ -95,6 +95,9 @@ loadAnnotations().then(checkURLParameter);
 
 </script>
 
+<footer>
+    <p>© 2026 Annotation Project — All evidence archived for transparency.</p>
+</footer>
 
 </body>
 </html>
